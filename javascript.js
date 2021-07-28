@@ -1,21 +1,14 @@
+// Keep track of which player won a round
 let playerWinCount = 0;
 let computerWinCount = 0;
 
+// Computers choice of Rock, Paper or Scissors
 const computerPlay = () => {
-  let randomNum = Math.floor(Math.random() * 3) + 1;
-  let output;
-  if (randomNum == 1) {
-    output = "Rock";
-  }
-  if (randomNum == 2) {
-    output = "Paper";
-  }
-  if (randomNum == 3) {
-    output = "Scissors";
-  }
-  return output;
+  let choices = ["Rock", "Paper", "Scissors"];
+  return choices[Math.floor(Math.random() * choices.length - 1) + 1];
 };
 
+// List of outcomes from all the possible choices by computer and player
 const playRound = (playerSelection, computerSelection) => {
   if (playerSelection == "rock" && computerSelection == "paper") {
     return "You Lose! Paper beats Rock";
@@ -46,17 +39,14 @@ const playRound = (playerSelection, computerSelection) => {
   }
 };
 
+// Gameplay
 const game = () => {
-  let playerWinCount = 0;
-  let computerWinCount = 0;
   for (let i = 0; i < 5; i++) {
-    playerSelection = prompt("Rock, Paper or Scissors?");
-    computerSelection = computerPlay();
+    playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+    computerSelection = computerPlay().toLowerCase();
     if (
-      playRound(
-        playerSelection.toLowerCase(),
-        computerSelection.toLowerCase()
-      ).startsWith("You Win!") == true
+      playRound(playerSelection, computerSelection).startsWith("You Win!") ==
+      true
     ) {
       playerWinCount++;
       console.log("You Win This Round");
@@ -65,10 +55,8 @@ const game = () => {
       );
     }
     if (
-      playRound(
-        playerSelection.toLowerCase(),
-        computerSelection.toLowerCase()
-      ).startsWith("You Lose!") == true
+      playRound(playerSelection, computerSelection).startsWith("You Lose!") ==
+      true
     ) {
       computerWinCount++;
       console.log("You Lost This Round");
@@ -77,10 +65,8 @@ const game = () => {
       );
     }
     if (
-      playRound(
-        playerSelection.toLowerCase(),
-        computerSelection.toLowerCase()
-      ).startsWith("You Draw") == true
+      playRound(playerSelection, computerSelection).startsWith("You Draw") ==
+      true
     ) {
       i--;
       console.log("You Drew This Round");
