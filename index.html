@@ -6,7 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="javascript.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Rock, Paper Scissors</h1>
+    </header>
+    <section class="main">
+      <div class="game">
+        <div class="player">
+          <div class="results"><h2 id="playerScore">Player: 0</h2></div>
+          <div class="imgContainer">
+            <img class="show" id="rock" src="Images/Rock.png" alt="Rock" />
+            <img
+              class="show hide"
+              id="paper"
+              src="Images/Paper.png"
+              alt="Paper"
+            />
+            <img
+              class="show hide"
+              id="scissors"
+              src="Images/Scissors.png"
+              alt="Scissors"
+            />
+          </div>
+          <div class="optionsContainer">
+            <div class="option" id="playerRock">
+              <img src="Images/Rock.png" alt="Rock" />
+            </div>
+            <div class="option" id="playerPaper">
+              <img src="Images/Paper.png" alt="Paper" />
+            </div>
+            <div class="option" id="playerScissors">
+              <img src="Images/Scissors.png" alt="Scissors" />
+            </div>
+          </div>
+        </div>
+        <div class="score"></div>
+        <div class="computer">
+          <div class="results"><h2 id="computerScore">Computer: 0</h2></div>
+          <div class="imgContainer">
+            <img class="show" id="rock2" src="Images/Rock2.png" alt="Rock" />
+            <img
+              class="show hide"
+              id="paper2"
+              src="Images/Paper2.png"
+              alt="Paper"
+            />
+            <img
+              class="show hide"
+              id="scissors2"
+              src="Images/Scissors2.png"
+              alt="Scissors"
+            />
+          </div>
+          <div class="optionsContainer">
+            <div class="option">
+              <img id="computerRock" src="Images/Rock2.png" alt="Rock" />
+            </div>
+            <div class="option">
+              <img id="computerPaper" src="Images/Paper2.png" alt="Paper" />
+            </div>
+            <div class="option">
+              <img
+                id="computerScissors"
+                src="Images/Scissors2.png"
+                alt="Scissors"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="javascript.js"></script>
 </html>
