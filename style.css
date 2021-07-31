@@ -65,6 +65,7 @@ h1 {
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
+  color: #333;
 }
 
 .player {
@@ -75,8 +76,7 @@ h1 {
 .imgContainer {
   display: flex;
   justify-content: center;
-  border: 2px solid #333;
-  border-bottom: none;
+  border: 3px solid #333;
 }
 
 .imgContainer img {
@@ -97,12 +97,38 @@ h1 {
   flex-direction: row;
 }
 
-.score {
+.container {
   width: 30%;
+  height: 458px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.score {
+  margin-top: 45%;
+}
+
+.newGame {
+  display: flex;
+  justify-content: center;
+}
+
+#startNewGame {
+  border: 2px solid #333;
+  background: #fff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#startNewGame:hover {
+  border: #333 solid 2px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
 }
 
 .option {
   border: 1px solid #333;
+  border-top: none;
   padding: 5px;
   width: 100%;
 }
@@ -114,6 +140,53 @@ h1 {
 }
 
 .option:hover {
+  border: #333 solid 3px;
+  border-top: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.selected {
+  border: #333 solid 3px !important;
+  border-top: #333 solid 2px !important;
+  font-size: 1.1rem;
+  color: rgb(99, 99, 99);
+  background: #ffffff;
+  text-shadow: 0.5px 0.5px black;
+}
+
+.roundOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 102px;
+}
+
+.amountOfRounds {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-left: 3px solid #333;
+  border-right: 3px solid #333;
+  border-bottom: 2px solid #333;
+  height: 19px;
+  background-color: #333;
+  color: #f3f3f3;
+  text-shadow: 2px 2px black;
+}
+
+.roundOptions {
+  display: flex;
+  flex-direction: row;
+  height: 83px;
+}
+
+.roundOption {
+  border: 1px solid #333;
+  padding: 5px;
+  width: 100%;
+}
+
+.roundOption:hover {
   border: #333 solid 3px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -165,11 +238,13 @@ footer {
   border-bottom: solid rgb(218, 255, 253) 5px;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
 }
 
 #information {
-  padding-left: 5px;
-  padding-bottom: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
 }

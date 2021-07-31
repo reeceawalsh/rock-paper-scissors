@@ -47,8 +47,13 @@
             </div>
           </div>
         </div>
-        <div class="score">
-          <h2 id="roundComment"></h2>
+        <div class="container">
+          <div class="score">
+            <h2 id="roundComment">
+          </div>
+          <div class="newGame">
+            <button id="startNewGame">New Game</button>
+          </div>
         </div>
         <div class="computer">
           <div class="results"><h2 id="computerScore">Computer: 0</h2></div>
@@ -72,19 +77,12 @@
               alt="Scissors"
             />
           </div>
-          <div class="optionsContainer">
-            <div class="option">
-              <img id="computerRock" src="Images/Rock2.png" alt="Rock" />
-            </div>
-            <div class="option">
-              <img id="computerPaper" src="Images/Paper2.png" alt="Paper" />
-            </div>
-            <div class="option">
-              <img
-                id="computerScissors"
-                src="Images/Scissors2.png"
-                alt="Scissors"
-              />
+          <div class="roundOptionsContainer">
+            <div class="amountOfRounds">First To How Many Rounds?</div>
+            <div class="roundOptions">
+              <button id="lowRound" class="roundOption">3</button>
+              <button id="medRound" class="roundOption">5</button>
+              <button id="highRound" class="roundOption">7</button>
             </div>
           </div>
         </div>
@@ -92,7 +90,9 @@
     </section>
     <footer>
       <div id="information">
-        <h4>Created by Reece Walsh for The Odin Project</h4>
+        <h4>Created by Reece Walsh</h4>
+        <h4>The Odin Project</h4>
+        <h4>Javascript | HTML | CSS</h4>
       </div>
     </footer>
   </body>

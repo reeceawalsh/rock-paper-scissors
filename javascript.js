@@ -9,6 +9,9 @@ const playerRock = document.getElementById("playerRock");
 const playerScissors = document.getElementById("playerScissors");
 const playerPaper = document.getElementById("playerPaper");
 
+// Start a new game
+const newGameBtn = document.getElementById("startNewGame");
+
 // These variables will be used to update and display the score to the player.
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
@@ -18,9 +21,38 @@ const roundComment = document.getElementById("roundComment");
 let playerWinCount = 0;
 let computerWinCount = 0;
 let roundResult = "";
+let roundAmount;
+let readyToPlay = false;
 
-//
-const previousResults = document.getElementById("previousResults");
+// How many rounds the player wants to play.
+const roundOptions = document.getElementsByClassName("roundOption");
+const lowRound = document.getElementById("lowRound");
+const medRound = document.getElementById("medRound");
+const highRound = document.getElementById("highRound");
+
+// Changes the roundAmount based on what the player choses. Also highlights the player's choice until a different round amount is picked.
+lowRound.addEventListener("click", () => {
+  roundAmount = parseInt(lowRound.textContent, 10);
+  newGame();
+  readyToPlay = true;
+  removeSelectedClass();
+  lowRound.classList.add("selected");
+});
+medRound.addEventListener("click", () => {
+  roundAmount = parseInt(medRound.textContent, 10);
+  newGame();
+  readyToPlay = true;
+  removeSelectedClass();
+  medRound.classList.add("selected");
+});
+highRound.addEventListener("click", () => {
+  roundAmount = parseInt(highRound.textContent, 10);
+  newGame();
+  readyToPlay = true;
+  removeSelectedClass();
+  highRound.classList.add("selected");
+});
+
 // Computers random choice of Rock, Paper or Scissors.
 const computerPlay = () => {
   let choices = ["rock", "paper", "scissors"];
@@ -29,31 +61,50 @@ const computerPlay = () => {
 
 // Determine player selection by which of the smaller images the player selected.
 playerRock.addEventListener("click", () => {
-  playerSelection = "rock";
-  shake();
+  if (readyToPlay) {
+    playerSelection = "rock";
+    shake();
+  } else {
+    prompt("You need to pick a round limit in the bottom right first.");
+  }
 });
 playerPaper.addEventListener("click", () => {
-  playerSelection = "paper";
-  shake();
+  if (readyToPlay) {
+    playerSelection = "paper";
+    shake();
+  } else {
+    prompt("You need to pick a round limit in the bottom right first.");
+  }
 });
 playerScissors.addEventListener("click", () => {
-  playerSelection = "scissors";
-  shake();
+  if (readyToPlay) {
+    playerSelection = "scissors";
+    shake();
+  } else {
+    prompt("You need to pick a round limit in the bottom right first.");
+  }
 });
 
 // The shake function will make the large rock image shake by adding a class that has an animation. This is to simulate the start of a rock, paper, scissors game. After the animation has ended, it will remove the shake class from both the players and the computers large rock. After the loop has ended, and the animation has ended for both rocks, the game function will begin.
 const shake = () => {
   for (let i = 0; i < bothRocks.length; i++) {
     bothRocks[i].classList.add("shake");
-    bothRocks[i].addEventListener("animationend", removeClass);
+    bothRocks[i].addEventListener("animationend", removeShakeClass);
   }
   bothRocks[0].addEventListener("animationend", game);
 };
 
-// Just removes the shake class, ending the animation.
-const removeClass = () => {
+// Removes the shake class, ending the animation.
+const removeShakeClass = () => {
   for (let i = 0; i < bothRocks.length; i++) {
     bothRocks[i].classList.remove("shake");
+  }
+};
+
+// Removes the selected class from the unselected round amount
+const removeSelectedClass = () => {
+  for (let i = 0; i < roundOptions.length; i++) {
+    roundOptions[i].classList.remove("selected");
   }
 };
 
@@ -83,6 +134,12 @@ const resetGame = () => {
 const keepScore = () => {
   playerScore.textContent = "Player: " + playerWinCount;
   computerScore.textContent = "Computer: " + computerWinCount;
+};
+
+const resetScore = () => {
+  playerWinCount = 0;
+  computerWinCount = 0;
+  keepScore();
 };
 
 // List of outcomes from all the possible choices by computer and player. The function checks who won, updates the comment to inform the user and updates the win count so that the score can be updated.
@@ -120,8 +177,29 @@ const playRound = () => {
     roundComment.textContent = "You lose! Rock beats Scissors.";
     computerWinCount++;
   }
+  if (playerWinCount == roundAmount || computerWinCount == roundAmount) {
+    endOfGame();
+  }
+};
+const newGame = () => {
+  resetScore();
+  removeSelectedClass();
+  readyToPlay = false;
+  roundComment.textContent = "Pick A Round Limit and Play";
 };
 
+newGameBtn.addEventListener("click", newGame);
+
+const endOfGame = () => {
+  console.log("round amount " + roundAmount);
+  console.log("computerwinamount" + computerWinCount);
+  console.log("playerwinamount" + playerWinCount);
+  if (playerWinCount > computerWinCount) {
+    roundComment.textContent = "Winner! Click Below To Play Again";
+  } else {
+    roundComment.textContent = "Loser! Click Below To Try Again";
+  }
+};
 // Identifies computer selection, changes the images to the images the player and computer chose, plays a round to work out who won, updates the score and then resets the game a second after.
 const game = () => {
   computerSelection = computerPlay().toLowerCase();
