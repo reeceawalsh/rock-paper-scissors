@@ -3,6 +3,9 @@ const imgs = document.querySelectorAll(".option");
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
+const rock2 = document.getElementById("rock2");
+const paper2 = document.getElementById("paper2");
+const scissors2 = document.getElementById("scissors2");
 const playerRock = document.getElementById("playerRock");
 const playerScissors = document.getElementById("playerScissors");
 const playerPaper = document.getElementById("playerPaper");
@@ -28,25 +31,28 @@ playerRock.addEventListener("click", () => {
   playerSelection = "rock";
   rock.classList.add("shake");
   rock.addEventListener("animationend", removeClass);
-  game();
+  rock.addEventListener("animationend", game);
 });
 
 playerPaper.addEventListener("click", () => {
   playerSelection = "paper";
   rock.classList.add("shake");
   rock.addEventListener("animationend", removeClass);
-  game();
+  rock.addEventListener("animationend", game);
 });
 
 playerScissors.addEventListener("click", () => {
   playerSelection = "scissors";
   rock.classList.add("shake");
   rock.addEventListener("animationend", removeClass);
-  game();
+  rock.addEventListener("animationend", game);
 });
 
 function removeClass() {
   rock.classList.remove("shake");
+  rock.classList.remove("show");
+  rock.classList.add("hide");
+  console.log("hiding");
 }
 
 function resetImages() {
@@ -65,6 +71,12 @@ function resetGame() {
   paper.classList.add("hide");
   scissors.classList.remove("show");
   scissors.classList.add("hide");
+  rock2.classList.remove("hide");
+  rock2.classList.add("show");
+  paper2.classList.remove("show");
+  paper2.classList.add("hide");
+  scissors2.classList.remove("show");
+  scissors2.classList.add("hide");
 }
 
 function resetImages2() {
@@ -74,15 +86,6 @@ function resetImages2() {
   rock2.classList.remove("show");
   paper2.classList.remove("show");
   scissors2.classList.remove("show");
-}
-
-function resetGame() {
-  rock2.classList.remove("hide");
-  rock2.classList.add("show");
-  paper2.classList.remove("show");
-  paper2.classList.add("hide");
-  scissors2.classList.remove("show");
-  scissors2.classList.add("hide");
 }
 
 function changePlayerImage() {
@@ -169,6 +172,7 @@ const game = () => {
   computerSelection = computerPlay().toLowerCase();
   changePlayerImage();
   changeComputerImage();
+  setTimeout(resetGame, 1000);
   if (
     playRound(playerSelection, computerSelection).startsWith("You Win!") == true
   ) {
@@ -193,10 +197,16 @@ const game = () => {
   }
 
   // After the loop has finished it will display results based on which win count is higher
-  if (playerWinCount > computerWinCount) {
+  if (
+    playerWinCount + computerWinCount == 5 &&
+    playerWinCount > computerWinCount
+  ) {
     console.log("You Win This Game! Congratulations.");
   }
-  if (computerWinCount > playerWinCount) {
+  if (
+    playerWinCount + computerWinCount == 5 &&
+    computerWinCount > playerWinCount
+  ) {
     console.log("You Lose This Game! Unlucky.");
   }
 };
