@@ -65,7 +65,7 @@ playerRock.addEventListener("click", () => {
     playerSelection = "rock";
     shake();
   } else {
-    prompt("You need to pick a round limit in the bottom right first.");
+    prompt("You need to pick a round limit on the right first.");
   }
 });
 playerPaper.addEventListener("click", () => {
@@ -136,6 +136,7 @@ const keepScore = () => {
   computerScore.textContent = "Computer: " + computerWinCount;
 };
 
+// Resets all relevant variables related to score.
 const resetScore = () => {
   playerWinCount = 0;
   computerWinCount = 0;
@@ -181,6 +182,8 @@ const playRound = () => {
     endOfGame();
   }
 };
+
+// Function that runs after button click. Resets everything.
 const newGame = () => {
   resetScore();
   removeSelectedClass();
@@ -188,19 +191,10 @@ const newGame = () => {
   roundComment.textContent = "Pick A Round Limit and Play";
 };
 
+// Runs newGame function when clicked.
 newGameBtn.addEventListener("click", newGame);
 
-const endOfGame = () => {
-  console.log("round amount " + roundAmount);
-  console.log("computerwinamount" + computerWinCount);
-  console.log("playerwinamount" + playerWinCount);
-  if (playerWinCount > computerWinCount) {
-    roundComment.textContent = "Winner! Click Below To Play Again";
-  } else {
-    roundComment.textContent = "Loser! Click Below To Try Again";
-  }
-};
-// Identifies computer selection, changes the images to the images the player and computer chose, plays a round to work out who won, updates the score and then resets the game a second after.
+// Identifies the computer's selection. Changes the images to the images the player and computer chose. Plays a round to work out who won. Updates the score. Resets the game a second after.
 const game = () => {
   computerSelection = computerPlay().toLowerCase();
   changeImages();
@@ -209,4 +203,11 @@ const game = () => {
   setTimeout(resetGame, 1000);
 };
 
-// There is currently no round limit set up or special message displayed when a side gets to a certain point.
+// Works out if the player or computer won and then displays the relevant information.
+const endOfGame = () => {
+  if (playerWinCount > computerWinCount) {
+    roundComment.textContent = "Winner! Click Below To Play Again";
+  } else {
+    roundComment.textContent = "Loser! Click Below To Try Again";
+  }
+};
