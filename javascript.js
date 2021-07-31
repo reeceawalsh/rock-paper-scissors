@@ -19,6 +19,8 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let roundResult = "";
 
+//
+const previousResults = document.getElementById("previousResults");
 // Computers random choice of Rock, Paper or Scissors.
 const computerPlay = () => {
   let choices = ["rock", "paper", "scissors"];
@@ -86,36 +88,36 @@ const keepScore = () => {
 // List of outcomes from all the possible choices by computer and player. The function checks who won, updates the comment to inform the user and updates the win count so that the score can be updated.
 const playRound = () => {
   if (playerSelection == "rock" && computerSelection == "paper") {
-    roundComment.textContent = "You Lose! Paper beats Rock";
+    roundComment.textContent = "You lose! Paper beats Rock";
     computerWinCount++;
   }
   if (playerSelection == "rock" && computerSelection == "rock") {
-    roundComment.textContent = "You Draw! Try Again.";
+    roundComment.textContent = "You draw! Try again.";
   }
   if (playerSelection == "rock" && computerSelection == "scissors") {
-    roundComment.textContent = "You Win! Rock beats Scissors";
+    roundComment.textContent = "You win! Rock beats Scissors";
     playerWinCount++;
   }
   if (playerSelection == "paper" && computerSelection == "rock") {
-    roundComment.textContent = "You Win! Paper beats Rock";
+    roundComment.textContent = "You win! Paper beats Rock";
     playerWinCount++;
   }
   if (playerSelection == "paper" && computerSelection == "paper") {
-    roundComment.textContent = "You Draw! Try again.";
+    roundComment.textContent = "You draw! Try again.";
   }
   if (playerSelection == "paper" && computerSelection == "scissors") {
-    roundComment.textContent = "You Lose! Scissors beats Paper.";
+    roundComment.textContent = "You lose! Scissors beats Paper.";
     computerWinCount++;
   }
   if (playerSelection == "scissors" && computerSelection == "paper") {
-    roundComment.textContent = "You Win! Scissors beats Paper.";
+    roundComment.textContent = "You win! Scissors beats Paper.";
     playerWinCount++;
   }
   if (playerSelection == "scissors" && computerSelection == "scissors") {
-    roundComment.textContent = "You Draw! Try again.";
+    roundComment.textContent = "You draw! Try again.";
   }
   if (playerSelection == "scissors" && computerSelection == "rock") {
-    roundComment.textContent = "You Lose! Rock beats Scissors.";
+    roundComment.textContent = "You lose! Rock beats Scissors.";
     computerWinCount++;
   }
 };
