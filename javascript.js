@@ -21,8 +21,7 @@ const roundComment = document.getElementById("roundComment");
 let playerWinCount = 0;
 let computerWinCount = 0;
 let roundResult = "";
-let roundAmount;
-let readyToPlay = false;
+let roundAmount = 5;
 
 // How many rounds the player wants to play.
 const roundOptions = document.getElementsByClassName("roundOption");
@@ -34,21 +33,18 @@ const highRound = document.getElementById("highRound");
 lowRound.addEventListener("click", () => {
   roundAmount = parseInt(lowRound.textContent, 10);
   newGame();
-  readyToPlay = true;
   removeSelectedClass();
   lowRound.classList.add("selected");
 });
 medRound.addEventListener("click", () => {
   roundAmount = parseInt(medRound.textContent, 10);
   newGame();
-  readyToPlay = true;
   removeSelectedClass();
   medRound.classList.add("selected");
 });
 highRound.addEventListener("click", () => {
   roundAmount = parseInt(highRound.textContent, 10);
   newGame();
-  readyToPlay = true;
   removeSelectedClass();
   highRound.classList.add("selected");
 });
@@ -61,28 +57,16 @@ const computerPlay = () => {
 
 // Determine player selection by which of the smaller images the player selected.
 playerRock.addEventListener("click", () => {
-  if (readyToPlay) {
-    playerSelection = "rock";
-    shake();
-  } else {
-    prompt("You need to pick a round limit on the right first.");
-  }
+  playerSelection = "rock";
+  shake();
 });
 playerPaper.addEventListener("click", () => {
-  if (readyToPlay) {
-    playerSelection = "paper";
-    shake();
-  } else {
-    prompt("You need to pick a round limit in the bottom right first.");
-  }
+  playerSelection = "paper";
+  shake();
 });
 playerScissors.addEventListener("click", () => {
-  if (readyToPlay) {
-    playerSelection = "scissors";
-    shake();
-  } else {
-    prompt("You need to pick a round limit in the bottom right first.");
-  }
+  playerSelection = "scissors";
+  shake();
 });
 
 // The shake function will make the large rock image shake by adding a class that has an animation. This is to simulate the start of a rock, paper, scissors game. After the animation has ended, it will remove the shake class from both the players and the computers large rock. After the loop has ended, and the animation has ended for both rocks, the game function will begin.
@@ -185,6 +169,7 @@ const playRound = () => {
 
 // Function that runs after button click. Resets everything.
 const newGame = () => {
+  roundAmount = 5;
   resetScore();
   removeSelectedClass();
   readyToPlay = false;
