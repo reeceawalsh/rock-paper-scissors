@@ -57,14 +57,23 @@ const computerPlay = () => {
 
 // Determine player selection by which of the smaller images the player selected.
 playerRock.addEventListener("click", () => {
+  if (playerWinCount == roundAmount || computerWinCount == roundAmount) {
+    resetScore();
+  }
   playerSelection = "rock";
   shake();
 });
 playerPaper.addEventListener("click", () => {
+  if (playerWinCount == roundAmount || computerWinCount == roundAmount) {
+    resetScore();
+  }
   playerSelection = "paper";
   shake();
 });
 playerScissors.addEventListener("click", () => {
+  if (playerWinCount == roundAmount || computerWinCount == roundAmount) {
+    resetScore();
+  }
   playerSelection = "scissors";
   shake();
 });
