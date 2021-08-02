@@ -172,6 +172,7 @@ const newGame = () => {
   roundAmount = 5;
   resetScore();
   removeSelectedClass();
+  medRound.classList.add("selected");
   readyToPlay = false;
   roundComment.textContent = "Pick A Round Limit and Play";
 };
